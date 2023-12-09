@@ -14,30 +14,6 @@ if ($conn->connect_error) {
 
 $resultMessage = "";
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $sql_query = $_POST["sql_query"];
-
-    // Run the SQL query
-    $result = $conn->query($sql_query);
-
-    if ($result) {
-        // Output data of each row
-        if ($result->num_rows > 0) {
-            while ($row = $result->fetch_assoc()) {
-                foreach ($row as $columnName => $value) {
-                    echo "$columnName: $value | ";
-                }
-                echo "<br>";
-            }
-        } else {
-            echo "0 results";
-        }
-    } else {
-        echo "Error: " . $conn->error;
-    }
-    
-}
-
 $conn->close();
 ?>
 
@@ -65,3 +41,29 @@ $conn->close();
     ?>
 </body>
 </html>
+
+<?php
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $sql_query = $_POST["sql_query"];
+
+    // Run the SQL query
+    $result = $conn->query($sql_query);
+
+    if ($result) {
+        // Output data of each row
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                foreach ($row as $columnName => $value) {
+                    echo "$columnName: $value | ";
+                }
+                echo "<br>";
+            }
+        } else {
+            echo "0 results";
+        }
+    } else {
+        echo "Error: " . $conn->error;
+    }
+    
+}
+?>
