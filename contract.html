@@ -27,38 +27,16 @@
             <label for="message">Message:</label>
             <textarea id="message" name="message" rows="4" required></textarea>
 
-            <button type="button" onclick="submitForm()">Submit</button>
-        <script src="script.js">
-                function saveToFile(){
-                    // Get the textarea content
-                    var textContent = document.getElementById("name");
+            <button type="button" id="submitButton" onclick="submitForm()">Submit</button>
 
-                    // Create a Blob with the content
-                    var blob = new Blob([textContent], { type: "text/plain" });
-
-                    // Create a link element
-                    var a = document.createElement("a");
-
-                    // Set the href attribute with the object URL of the blob
-                    a.href = window.URL.createObjectURL(blob);
-
-                    // Set the download attribute with the desired file name
-                    a.download = "output.txt";
-
-                    // Append the link to the document
-                    document.body.appendChild(a);
-
-                    // Trigger a click on the link to start the download
-                    a.click();
-
-                    // Remove the link from the document
-                    document.body.removeChild(a);
-}
-            </script>
-        
         </form>
-        <div id="response">
-        </div>
+        <div id="response"></div>
     </div>
+
+    <script src="script.js">
+        function saveToFile(){
+            var a = document.getElementById("name");
+        }
+    </script>
 </body>
 </html>

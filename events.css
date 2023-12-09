@@ -1,9 +1,10 @@
 body {
-    background-image: url('Kane.jpg'); /* Replace 'your-background-image.jpg' with the actual filename of your background image */
-    background-size: cover;
+    background-image: url('eventimage.webp'); /* Replace 'your-background-image.jpg' with the actual filename of your background image */
+    background-size: 500;
     background-position: center;
     background-repeat: no-repeat;
     margin: 0;
+
   
 }
 
