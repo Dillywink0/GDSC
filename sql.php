@@ -12,6 +12,8 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
+$resultMessage = "";
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $sql_query = $_POST["sql_query"];
 
@@ -19,9 +21,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $result = $conn->query($sql_query);
 
     if ($result === TRUE) {
-        echo "Query executed successfully";
+        $resultMessage = "Query executed successfully";
+        
+        // If the query is a SELECT statement, fetch and display the results
+        if (strpos(strtoupper($sql_query), "SELECT") !== false) {
+            $resultMessage .= "<br>Results:<br>";
+
+            while ($row = $result->fetch_assoc()) {
+                $resultMessage .= json_encode($row) . "<br>";
+            }
+        }
     } else {
-        echo "Error executing query: " . $conn->error;
+        $resultMessage = "Error executing query: " . $conn->error;
     }
 }
 
@@ -44,5 +55,11 @@ $conn->close();
         <br>
         <input type="submit" value="Execute Query">
     </form>
+
+    <?php
+    if (!empty($resultMessage)) {
+        echo "<p>$resultMessage</p>";
+    }
+    ?>
 </body>
 </html>
