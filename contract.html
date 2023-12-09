@@ -7,7 +7,6 @@
     <title>Contact Us</title>
 </head>
 <body>
-    
     <div class="container">
         <form id="contactForm">
             <h1>Contact Us</h1>
@@ -21,57 +20,37 @@
             <textarea id="message" name="message" rows="4" required></textarea>
 
             <button type="button" onclick="submitForm()">Submit</button>
+        <script src="script.js">
+                function saveToFile(){
+                    // Get the textarea content
+                    var textContent = document.getElementById("name");
+
+                    // Create a Blob with the content
+                    var blob = new Blob([textContent], { type: "text/plain" });
+
+                    // Create a link element
+                    var a = document.createElement("a");
+
+                    // Set the href attribute with the object URL of the blob
+                    a.href = window.URL.createObjectURL(blob);
+
+                    // Set the download attribute with the desired file name
+                    a.download = "output.txt";
+
+                    // Append the link to the document
+                    document.body.appendChild(a);
+
+                    // Trigger a click on the link to start the download
+                    a.click();
+
+                    // Remove the link from the document
+                    document.body.removeChild(a);
+}
+            </script>
+        
         </form>
-        <div id="response"></div>
+        <div id="response">
+        </div>
     </div>
-
-    <script src="script.js">
-        function saveToFile(){
-            var a = document.getElementById("name");
-        }
-    </script>
-</body>
-</html>
-
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Save Text to File</title>
-</head>
-<body>
-    <textarea id="textInput" rows="10" cols="30"></textarea>
-    <br>
-    <button onclick="saveToFile()">Save to File</button>
-
-    <script>
-        function saveToFile() {
-            // Get the textarea content
-            var textContent = document.getElementById("textInput").value;
-
-            // Create a Blob with the content
-            var blob = new Blob([textContent], { type: "text/plain" });
-
-            // Create a link element
-            var a = document.createElement("a");
-
-            // Set the href attribute with the object URL of the blob
-            a.href = window.URL.createObjectURL(blob);
-
-            // Set the download attribute with the desired file name
-            a.download = "output.txt";
-
-            // Append the link to the document
-            document.body.appendChild(a);
-
-            // Trigger a click on the link to start the download
-            a.click();
-
-            // Remove the link from the document
-            document.body.removeChild(a);
-        }
-    </script>
 </body>
 </html>
