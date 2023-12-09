@@ -20,19 +20,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Run the SQL query
     $result = $conn->query($sql_query);
 
-    if ($result === TRUE) {
-        $resultMessage = "Query executed successfully";
-        
-        // If the query is a SELECT statement, fetch and display the results
-        if (strpos(strtoupper($sql_query), "SELECT") !== false) {
-            $resultMessage .= "<br>Results:<br>";
+    $result = $conn->query($sql);
 
-            while ($row = $result->fetch_assoc()) {
-                $resultMessage .= json_encode($row) . "<br>";
-            }
+    // Check if the query was successful
+    if ($result->num_rows > 0) {
+        // Output data of each row
+        while ($row = $result->fetch_assoc()) {
+            echo "ID: " . $row["id"] . " - Username: " . $row["username"] . " - Email: " . $row["email"] . "<br>";
         }
     } else {
-        $resultMessage = "Error executing query: " . $conn->error;
+        echo "0 results";
     }
 }
 
