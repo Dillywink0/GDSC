@@ -1,0 +1,71 @@
+body {
+    background-image: url('Kane.jpg'); /* Replace 'your-background-image.jpg' with the actual filename of your background image */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    margin: 0;
+   
+}
+
+/* Additional styles to improve visibility of content on top of the background */
+
+header {
+    background-color: #333;
+    color: #5afff4;
+    text-align: center;
+    padding: 20px;
+}
+
+nav {
+    background-color: #444;
+}
+
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+nav li {
+    display: inline;
+    margin-right: 10px;
+}
+
+nav a {
+    text-decoration: none;
+    color: #fff;
+}
+
+main {
+    padding: 20px;
+
+    /* Add grid properties */
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+section {
+    margin-bottom: 40px;
+}
+
+img {
+    border: 2px solid #333;
+    border-radius: 30px;
+}
+
+footer {
+    background-color: #333;
+    color: #5afff4;
+    text-align: center;
+    padding: 1em;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
