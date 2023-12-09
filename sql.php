@@ -20,17 +20,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Run the SQL query
     $result = $conn->query($sql_query);
 
-    $result = $conn->query($sql);
-
-    // Check if the query was successful
-    if ($result->num_rows > 0) {
+    if ($result) {
         // Output data of each row
-        while ($row = $result->fetch_assoc()) {
-            echo "ID: " . $row["id"] . " - Username: " . $row["username"] . " - Email: " . $row["email"] . "<br>";
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                foreach ($row as $columnName => $value) {
+                    echo "$columnName: $value | ";
+                }
+                echo "<br>";
+            }
+        } else {
+            echo "0 results";
         }
     } else {
-        echo "0 results";
+        echo "Error: " . $conn->error;
     }
+    
 }
 
 $conn->close();
