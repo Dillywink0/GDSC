@@ -13,27 +13,28 @@ if ($conn->connect_error) {
 }
 
 $resultMessage = "";
-
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $sql_query = $_POST["sql_query"];
 
     // Run the SQL query
     $result = $conn->query($sql_query);
 
-    if ($result === TRUE) {
-        $resultMessage = "Query executed successfully";
-        
-        // If the query is a SELECT statement, fetch and display the results
-        if (strpos(strtoupper($sql_query), "SELECT") !== false) {
-            $resultMessage .= "<br>Results:<br>";
-
+    if ($result) {
+        // Output data of each row
+        if ($result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) {
-                $resultMessage .= json_encode($row) . "<br>";
+                foreach ($row as $columnName => $value) {
+                    echo "$columnName: $value | ";
+                }
+                echo "<br>";
             }
+        } else {
+            echo "0 results";
         }
     } else {
-        $resultMessage = "Error executing query: " . $conn->error;
+        echo "Error: " . $conn->error;
     }
+    
 }
 
 $conn->close();
