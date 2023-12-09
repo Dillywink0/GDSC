@@ -22,6 +22,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         echo "Query executed successfully";
     } else {
         echo "Error executing query: " . $conn->error;
+        echo $result;
     }
 }
 
